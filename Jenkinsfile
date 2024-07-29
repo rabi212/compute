@@ -1,18 +1,18 @@
 pipeline {
     agent any
-	
+
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp-key')
-	GIT_TOKEN = credentials('git-token')
+        GIT_TOKEN = credentials('git-token')
     }
-	
+
     stages {
         stage('Git Checkout') {
             steps {
-               git "https://${GIT_TOKEN}@github.com/rabi212/compute.git"
+                git branch: 'main', url: "https://${GIT_TOKEN}@github.com/rabi212/compute.git"
             }
         }
-        
+
         stage('Terraform Init') {
             steps {
                 script {
@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Terraform Plan') {
             steps {
                 script {
@@ -29,18 +29,24 @@ pipeline {
             }
         }
 
-	    stage('Manual Approval') {
+        stage('Manual Approval') {
             steps {
                 input "Approve?"
             }
         }
-	    
+
         stage('Terraform Apply') {
             steps {
                 script {
                     sh 'terraform apply tfplan'
                 }
             }
+        }
+    }
+
+    post {
+        cleanup {
+            cleanWs()
         }
     }
 }
