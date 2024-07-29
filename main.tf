@@ -1,5 +1,5 @@
 provider "google" {
-  project = "giffy-builder" # Replace with your actual project ID
+  project = "giffy-builder"  # Replace with your actual project ID
   region  = "asia-south1"
 }
 
@@ -42,8 +42,4 @@ resource "google_compute_firewall" "default" {
   source_ranges = ["0.0.0.0/0"]
 
   target_tags = ["http-server", "https-server"]
-}
-
-output "bucket_url" {
-  value = "gs://${google_storage_bucket.my_bucket.name}"
 }
