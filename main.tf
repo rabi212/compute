@@ -29,17 +29,3 @@ resource "google_compute_instance" "rabi" {
 
   tags = ["http-server", "https-server"]
 }
-
-resource "google_compute_firewall" "allow-http-https" {
-  name    = "allow-http-https"
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports    = ["80", "443"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-
-  target_tags = ["http-server", "https-server"]
-}
