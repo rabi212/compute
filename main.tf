@@ -1,5 +1,5 @@
 provider "google" {
-  project = var.project_id
+  project = "giffy-builder"  # Replace with your actual project ID
   region  = "asia-south1"
 }
 
@@ -17,6 +17,7 @@ resource "google_compute_instance" "rabi" {
   }
 
   network_interface {
+    network = "default"
     access_config {
       // Ephemeral IP
     }
@@ -29,7 +30,7 @@ resource "google_compute_instance" "rabi" {
   tags = ["http-server", "https-server"]
 }
 
-resource "google_compute_firewall" "default" {
+resource "google_compute_firewall" "allow-http-https" {
   name    = "allow-http-https"
   network = "default"
 
@@ -41,14 +42,4 @@ resource "google_compute_firewall" "default" {
   source_ranges = ["0.0.0.0/0"]
 
   target_tags = ["http-server", "https-server"]
-}
-
-variable "project_id" {
-  description = "The ID of the project in which to create the instance"
-  type        = string
-}
-
-variable "credentials_file" {
-  description = "Path to the credentials file"
-  type        = string
 }
