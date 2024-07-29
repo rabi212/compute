@@ -10,7 +10,7 @@ resource "google_compute_instance" "rabi" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-2204-jammy-v20230628"
+      image = "ubuntu-2204-jammy-v20240519"
       size  = 20
       type  = "pd-standard"
     }
