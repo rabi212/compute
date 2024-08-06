@@ -1,5 +1,5 @@
 provider "google" {
-  project = "gcp-poc-project-285306" # Replace with your actual project ID
+  project = "giffy-builder" # Replace with your actual project ID
   region  = "asia-south1"
 }
 
