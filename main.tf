@@ -4,7 +4,7 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "my_bucket" {
-  name                     = "compute96-unique" # Ensure this name is globally unique
+  name                     = "giffy-96" # Ensure this name is globally unique
   location                 = "asia-south1"
   force_destroy            = true
   public_access_prevention = "enforced"
