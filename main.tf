@@ -1,31 +1,17 @@
-provider "google" {
-  project = "giffy-builder"  # Replace with your actual project ID
-  region  = "asia-south1"
+resource "google_storage_bucket" "my-bucket" {
+  name                     = "comput-96"
+  project                  = "gcp-poc-project-285306"
+  location                 = "US"
+  force_destroy            = true
+  public_access_prevention = "enforced"
 }
-
-resource "google_compute_instance" "rabi" {
-  name         = "rabi"
-  machine_type = "n1-standard-1"
-  zone         = "asia-south1-a"
-
-  boot_disk {
-    initialize_params {
-      image = "ubuntu-2204-jammy-v20240519"
-      size  = 20
-      type  = "pd-standard"
-    }
-  }
-
-  network_interface {
-    network = "default"
-    access_config {
-      // Ephemeral IP
-    }
-  }
-
-  metadata = {
-    enable-oslogin = "TRUE"
-  }
-
-  tags = ["http-server", "https-server"]
+#
+resource "google_storage_bucket" "my-bucket2" {
+  name                     = "tt-githubdemo-bucket-002"
+  project                  = "tt-dev-001"
+  location                 = "US"
+  force_destroy            = true
+  public_access_prevention = "enforced"
 }
+#
+### dummy
