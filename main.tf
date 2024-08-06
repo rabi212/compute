@@ -1,17 +1,15 @@
-resource "google_storage_bucket" "my-bucket" {
-  name                     = "comput-96"
-  project                  = "gcp-poc-project-285306"
-  location                 = "US"
+provider "google" {
+  project = "gcp-poc-project-285306" # Replace with your actual project ID
+  region  = "asia-south1"
+}
+
+resource "google_storage_bucket" "my_bucket" {
+  name                     = "compute96-unique" # Ensure this name is globally unique
+  location                 = "asia-south1"
   force_destroy            = true
   public_access_prevention = "enforced"
 }
-#
-resource "google_storage_bucket" "my-bucket2" {
-  name                     = "tt-githubdemo-bucket-002"
-  project                  = "tt-dev-001"
-  location                 = "US"
-  force_destroy            = true
-  public_access_prevention = "enforced"
+
+output "bucket_url" {
+  value = "gs://${google_storage_bucket.my_bucket.name}"
 }
-#
-### dummy
