@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GOOGLE_APPLICATION_CREDENTIALS = credentials('rabi-cred')
+        # GOOGLE_APPLICATION_CREDENTIALS = credentials('rabi-cred')
         GIT_TOKEN = credentials('git-token')
     }
 
